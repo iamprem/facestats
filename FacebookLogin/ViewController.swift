@@ -15,6 +15,7 @@ import Foundation
 
 class ViewController: UIViewController, FBLoginViewDelegate {
 
+    //MARK: - UI Declaration
     @IBOutlet var fbLoginView : FBLoginView!
     @IBOutlet var profilePictureView : FBProfilePictureView!
     @IBOutlet var firstNameLabel: UILabel!
@@ -29,12 +30,12 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         
     }
     
-    
+    //MARK: - Variable Declaration
     var firstName : String!
     var lastName : String!
     var email : String!
     var eventDetailsDict = [String : String] ()
-    var eventDetailsArr = [String]()
+    var eventDetailsArr = [[String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +45,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         
     }
 
-    //Facebook Delegate methods
+    //Mark: After Login
     func loginViewShowingLoggedInUser(loginView : FBLoginView!) {
         println("User Logged In")
         println("This is where you perform a segue.")
@@ -90,7 +91,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                         // add to dictionary
                         
                         self.eventDetailsDict[eventName] = tinyDateString
-                        self.eventDetailsArr.append("\(eventName) : \(tinyDateString)")
+                        self.eventDetailsArr.append([eventName, tinyDateString])
                         println("\(eventName) : \(tinyDateString)")
 
                     }
@@ -154,7 +155,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     }
     
     
-    //Fetched Data after Login
+    //MARK: Fetched Data after Login
     func loginViewFetchedUserInfo(loginView : FBLoginView!, user: FBGraphUser){
         
         self.firstName = user.first_name
@@ -182,12 +183,13 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     }
     
     
-    //After user Logout
+    //Mark: After user Logout
     func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {
         
         profilePictureView.profileID = nil
         self.firstNameLabel.hidden = true
         self.firstNameLabel.text = ""
+//        self.performSegueWithIdentifier("eventsToHomeSegue", sender: EventsViewController())
         println("User Logged Out")
     }
     
@@ -205,7 +207,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     
     
     
-    //Passing the data for the segue
+    //Mark: Segue Data preparation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if (segue.identifier == "showBasicInfoView"){

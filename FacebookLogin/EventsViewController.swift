@@ -14,7 +14,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var eventTableView: UITableView!
     
     var eventDetailsDict = [String : String] ()
-    var eventDetailsArr = [String]()
+    var eventDetailsArr = [[String]]()
     
     let textCellIdentifier = "TextCell"
     let swiftBlogs = ["Ray Wenderlich", "NSHipster", "iOS Developer Tips", "Jameson Quave", "Natasha The Robot", "Coding Explorer", "That Thing In Swift", "Andrew Bancroft", "iAchieved.it", "Airspeed Velocity"]
@@ -53,14 +53,34 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        /*
         let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as UITableViewCell
+        
         
         // set cell's textLabel.text property
         // set cell's detailTextLabel.text property
         let row = indexPath.row
         cell.textLabel?.text = eventDetailsArr[row]
-//        cell.detailTextLabel?.text = eventDetailsArr[row][1]
+        cell.detailTextLabel?.text = "test"
         return cell
+        */
+        
+        
+        //Try 1
+        var cell =
+        tableView.dequeueReusableCellWithIdentifier(textCellIdentifier) as? UITableViewCell
+        if cell != nil
+        {
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
+                reuseIdentifier: textCellIdentifier)
+        }
+        // At this point, we definitely have a cell -- either dequeued or newly created,
+        // so let's force unwrap the optional into a UITableViewCell
+        let row = indexPath.row
+        cell!.textLabel?.text = eventDetailsArr[row][0]
+        cell!.detailTextLabel?.text = eventDetailsArr[row][1]
+        
+        return cell!
     }
 
     /*
