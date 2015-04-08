@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FacebookLogin/ViewController.swift"
-            timestampString = "450155920.844791"
+            timestampString = "450160974.622869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "loginViewShowingLoggedInUser(_:)"
             landmarkType = "5">
          </BreakpointContent>

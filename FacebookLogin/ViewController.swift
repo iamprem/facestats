@@ -19,7 +19,14 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     @IBOutlet var profilePictureView : FBProfilePictureView!
     @IBOutlet var firstNameLabel: UILabel!
     @IBAction func eventsButton(sender: AnyObject) {
-    
+        if(FBSession.activeSession().isOpen){
+            self.performSegueWithIdentifier("homeToEventSegue", sender: self)
+        }
+        else{
+            firstNameLabel.text = "Please Login!"
+            firstNameLabel.hidden = false
+        }
+        
     }
     
     
@@ -172,16 +179,6 @@ class ViewController: UIViewController, FBLoginViewDelegate {
 
     }
     
-    //Passing the date for the segue
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "showBasicInfoView"){
-            var vc: BasicInfoViewController = segue.destinationViewController as BasicInfoViewController
-            vc.firstName = self.firstName
-            vc.lastName = self.lastName
-            vc.email = self.email
-        }
-    }
-    
     
     //After user Logout
     func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {
@@ -196,10 +193,34 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         println("Error: \(handleError.localizedDescription)")
     }
     
+    
+    
+    //Overridden Methods
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    //Passing the data for the segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "showBasicInfoView"){
+            var vc: BasicInfoViewController = segue.destinationViewController as BasicInfoViewController
+            vc.firstName = self.firstName
+            vc.lastName = self.lastName
+            vc.email = self.email
+        }
+        
+        if segue.identifier == "homeToEventSegue" {
+            if let destinationVC = segue.destinationViewController as? EventsViewController{
+                destinationVC.eventDetailsDict = self.eventDetailsDict
+            }
+        }
+        
+    }
+    
     
     
     /*

@@ -161,8 +161,8 @@
 			children = (
 				8A18676E1ACF4C8300CB7D2C /* AppDelegate.swift */,
 				8A1867701ACF4C8300CB7D2C /* ViewController.swift */,
-				3BDAA4161AD1C6D500597CE2 /* BasicInfoViewController.swift */,
 				3B32FDC91AD4D408008E2EB5 /* EventsViewController.swift */,
+				3BDAA4161AD1C6D500597CE2 /* BasicInfoViewController.swift */,
 				8A1867721ACF4C8300CB7D2C /* Main.storyboard */,
 				8A1867751ACF4C8300CB7D2C /* Images.xcassets */,
 				8A1867771ACF4C8300CB7D2C /* LaunchScreen.xib */,

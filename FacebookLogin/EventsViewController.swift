@@ -10,9 +10,21 @@ import UIKit
 
 class EventsViewController: UIViewController {
 
+    @IBOutlet var eventLabel: UILabel!
+    
+    var eventDetailsDict = [String : String] ()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if !eventDetailsDict.isEmpty{
+            for (key,date) in self.eventDetailsDict{
+                println("Event Name: \(key) is on \(date)")
+            }
+        }
+        else{
+            eventLabel.text = "No Events!"
+        }
+        
         // Do any additional setup after loading the view.
     }
 
