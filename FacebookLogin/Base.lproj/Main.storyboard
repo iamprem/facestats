@@ -24,19 +24,26 @@
                                 <rect key="frame" x="110" y="100" width="100" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Z7-4w-PN5">
+                                <rect key="frame" x="16" y="28" width="288" height="33"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="20"/>
+                                <color key="textColor" red="0.35960116270046127" green="0.1768758694308481" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="fbLoginView" destination="h1p-AW-cJI" id="hZl-Ky-Ina"/>
+                        <outlet property="firstNameLabel" destination="9Z7-4w-PN5" id="jB5-lT-0ZL"/>
                         <outlet property="profilePictureView" destination="0Di-gB-ihJ" id="3Lv-AR-if6"/>
                         <segue destination="Ufb-6a-ZgC" kind="show" identifier="showBasicInfoView" id="Yqz-jh-er2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="401" y="81"/>
+            <point key="canvasLocation" x="337" y="87"/>
         </scene>
         <!--Basic Info View Controller-->
         <scene sceneID="XkV-21-To6">
@@ -80,7 +87,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hm-Ls-uki" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="81"/>
+            <point key="canvasLocation" x="933" y="-204"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="uAz-Xr-Eqb">
+            <objects>
+                <viewController id="jtd-vN-pIQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N6G-dZ-nlp"/>
+                        <viewControllerLayoutGuide type="bottom" id="isk-cd-zr0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L5H-94-DFA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eXe-8g-hfw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="933" y="442"/>
         </scene>
     </scenes>
 </document>
