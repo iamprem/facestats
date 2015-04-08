@@ -34,6 +34,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     var lastName : String!
     var email : String!
     var eventDetailsDict = [String : String] ()
+    var eventDetailsArr = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +90,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                         // add to dictionary
                         
                         self.eventDetailsDict[eventName] = tinyDateString
+                        self.eventDetailsArr.append("\(eventName) : \(tinyDateString)")
                         println("\(eventName) : \(tinyDateString)")
 
                     }
@@ -216,6 +218,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         if segue.identifier == "homeToEventSegue" {
             if let destinationVC = segue.destinationViewController as? EventsViewController{
                 destinationVC.eventDetailsDict = self.eventDetailsDict
+                destinationVC.eventDetailsArr = self.eventDetailsArr
             }
         }
         
