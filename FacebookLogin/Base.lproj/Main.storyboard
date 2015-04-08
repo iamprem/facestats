@@ -32,12 +32,11 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98f-B4-rhn">
                                 <rect key="frame" x="104" y="412" width="112" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="My Events">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="eventsButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AML-uw-X52"/>
-                                    <segue destination="jtd-vN-pIQ" kind="show" identifier="homeToEventSegue" id="Ilj-4I-12C"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -49,11 +48,12 @@
                         <outlet property="firstNameLabel" destination="9Z7-4w-PN5" id="jB5-lT-0ZL"/>
                         <outlet property="profilePictureView" destination="0Di-gB-ihJ" id="3Lv-AR-if6"/>
                         <segue destination="Ufb-6a-ZgC" kind="show" identifier="showBasicInfoView" id="Yqz-jh-er2"/>
+                        <segue destination="jtd-vN-pIQ" kind="show" identifier="homeToEventSegue" id="R1h-LB-nOf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="301" y="168"/>
+            <point key="canvasLocation" x="327" y="216"/>
         </scene>
         <!--Basic Info View Controller-->
         <scene sceneID="XkV-21-To6">
@@ -134,6 +134,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="eventLabel" destination="8Xd-DC-waS" id="nIw-2l-1Pu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXe-8g-hfw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
