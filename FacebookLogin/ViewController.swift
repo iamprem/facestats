@@ -18,6 +18,9 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     @IBOutlet var fbLoginView : FBLoginView!
     @IBOutlet var profilePictureView : FBProfilePictureView!
     @IBOutlet var firstNameLabel: UILabel!
+    @IBAction func eventsButton(sender: AnyObject) {
+    
+    }
     
     
     var firstName : String!
