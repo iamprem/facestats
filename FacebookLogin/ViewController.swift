@@ -17,16 +17,19 @@ class ViewController: UIViewController, FBLoginViewDelegate {
 
     @IBOutlet var fbLoginView : FBLoginView!
     @IBOutlet var profilePictureView : FBProfilePictureView!
+    @IBOutlet var firstNameLabel: UILabel!
+    
     
     var firstName : String!
     var lastName : String!
     var email : String!
+    var eventDetailsDict = [String : String] ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.fbLoginView.delegate = self
-        self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends"]
+        self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends", "user_events"]
         
     }
 
@@ -54,20 +57,53 @@ class ViewController: UIViewController, FBLoginViewDelegate {
             let data = JSON(jsonData!)
             
             println(data)
-            var eventName :String?
-            if let ev : String = data["data"][0]["name"].string {
-                println("Event Name: \(ev)")
-                eventName = ev
+            
+            /******************************************************/
+            self.eventDetailsDict.removeAll(keepCapacity: true)
+            println(data.count)
+            for var i = 0; i < data.count; ++i {
+                
+                // get news title from json object
+                if let eventName = data["data"][i]["name"].string {
+                    if let dateStringtemp = data["data"][i]["start_time"].string {
+                        
+                        var eventDate = self.dateStringToDateObject(dateStringtemp)
+                        
+                        var dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+                        var dateString = dateFormatter.stringFromDate(eventDate)
+                        var dateStringLength = countElements(dateString)
+                        var subStringIndex = dateStringLength - 6
+                        var tinyDateString = dateString.substringToIndex(advance(dateString.startIndex, subStringIndex))
+                        
+                        // add to dictionary
+                        
+                        self.eventDetailsDict[eventName] = tinyDateString
+                        println("\(eventName) : \(tinyDateString)")
+
+                    }
+                }
+                else{
+                    self.eventDetailsDict["No Events!"] = ""
+                }
                 
             }
+            
+            
+            
+            
+            
+            
+            
+            /******************************************************/
+            
+            
             if var eventDate : String = data["data"][0]["start_time"].string{
                 
-                eventDate = eventDate.stringByReplacingOccurrencesOfString("T", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
-                println("Data and Time: \(eventDate)")
+
+                /*
                 
-                
-                
-                
+                //Regular Expression to extract date and time
                 var timeZone = NSRegularExpression(pattern:"-(\\d{4})");
                 var date = NSRegularExpression(pattern: "(\\d{4}-\\d{2}-\\d{2})")
                 var time = NSRegularExpression(pattern: "(\\d{2}:\\d{2}:\\d{2})")
@@ -76,9 +112,10 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                 let retrivedTime = time.firstMatch(eventDate)
                 println(retrivedDate+" "+retrivedTime+" "+retrivedTimeZone)
                 
+                */
                 
                 
-                
+                /*
                 //Extract Date
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
@@ -87,6 +124,9 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                 var localDate = extractedDate?.toLocalTime()
                 println("Local Date : \(localDate)")
                 
+                */
+                
+                /*
                 //Get the number of seconds for the event
                 var timeLeftForTheEvent = NSDate().timeIntervalSinceDate(extractedDate!)
                 timeLeftForTheEvent *= -1
@@ -94,15 +134,10 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                 var noOfHours:Int = Int((timeLeftForTheEvent%86400)/3600)
                 var noOfMinutes: Int = Int(((timeLeftForTheEvent%86400)%3600)/60)
                 println("\(noOfDays) days, \(noOfHours) hours and \(noOfMinutes) minutes left for the event \(eventName!)")
-            }
-            else{
-                println("else: ")
+                */
             }
             
         }
-        
-        
-        
         
     }
     
@@ -114,6 +149,13 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         self.lastName = user.last_name
         profilePictureView.profileID = user.objectID
         
+        
+        self.firstNameLabel.text = "Hey \(user.first_name)!"
+        self.firstNameLabel.hidden = false
+        
+        for (key,date) in self.eventDetailsDict{
+            println("Event Name: \(key) is on \(date)")
+        }
         
         //To get the email id - Use the following method coz, there is no available property for the
         // user - FBGraphUser object to get email id
@@ -142,6 +184,8 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {
         
         profilePictureView.profileID = nil
+        self.firstNameLabel.hidden = true
+        self.firstNameLabel.text = ""
         println("User Logged Out")
     }
     
@@ -152,6 +196,21 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    /*
+    Convert the string format date to UTC Date and return the date object
+    */
+    func dateStringToDateObject(inputDateStr: String) -> NSDate {
+        
+        var eventDate = inputDateStr.stringByReplacingOccurrencesOfString("T", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZZZ"
+        var extractedDateUTC = dateFormatter.dateFromString(eventDate)
+        
+        return extractedDateUTC!
+        
     }
 
 
