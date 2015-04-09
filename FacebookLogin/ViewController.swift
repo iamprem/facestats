@@ -34,8 +34,8 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     var firstName : String!
     var lastName : String!
     var email : String!
-    var eventDetailsDict = [String : String] ()
     var eventDetailsArr = [[String]]()
+    var statusTempArr = [[String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,24 +55,22 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         //Get the access token of the current session
         
         var accessToken = FBSession.activeSession().accessTokenData.accessToken
-        println(accessToken)
+        //println(accessToken)
         
         
         
-        //Request to get the events JSON
+        //MARK: requestForEvents
         
         Alamofire.request(Alamofire.Method.GET, "https://graph.facebook.com/v2.3/me/events?access_token="+accessToken+"&debug=all&format=json&method=get&pretty=0&suppress_http_code=1").responseJSON() {
             (_, _, jsonData, _) in
-            //println(jsonData)
             
             // TODO: Unwrap the optional instead of forced unwrapping! -> Prem
             let data = JSON(jsonData!)
-            
-            println(data)
+            //println(data)
             
             /******************************************************/
-            self.eventDetailsDict.removeAll(keepCapacity: true)
-            println(data.count)
+            self.eventDetailsArr.removeAll(keepCapacity: true)
+            //println(data.count)
             for var i = 0; i < data.count; ++i {
                 
                 // get news title from json object
@@ -80,7 +78,6 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                     if let dateStringtemp = data["data"][i]["start_time"].string {
                         
                         var eventDate = self.dateStringToDateObject(dateStringtemp)
-                        
                         var dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
                         var dateString = dateFormatter.stringFromDate(eventDate)
@@ -88,29 +85,83 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                         var subStringIndex = dateStringLength - 6
                         var tinyDateString = dateString.substringToIndex(advance(dateString.startIndex, subStringIndex))
                         
-                        // add to dictionary
-                        
-                        self.eventDetailsDict[eventName] = tinyDateString
+                        // add to Array
                         self.eventDetailsArr.append([eventName, tinyDateString])
-                        println("\(eventName) : \(tinyDateString)")
+                        
 
                     }
+                    
                 }
-                else{
-                    self.eventDetailsDict["No Events!"] = ""
+                
+            }
+            /******************************************************/
+            
+            
+            //MARK: requestForStatuses
+            
+            Alamofire.request(Alamofire.Method.GET, "https://graph.facebook.com/v2.3/me/statuses?access_token="+accessToken+"&debug=all&format=json&method=get&pretty=0&suppress_http_code=1").responseJSON() {
+                (_, _, jsonData, _) in
+                
+                // TODO: Unwrap the optional instead of forced unwrapping! -> Prem
+                let data = JSON(jsonData!)
+                println(data)
+                var updatedTime1: String?
+                
+                for var i = 0; i < data["data"].count; ++i {
+                    updatedTime1 = data["data"][i]["message"].string
+                    if updatedTime1 != nil {
+                        
+                        var updatedTime = data["data"][i]["updated_time"].string!
+                        var message = data["data"][i]["message"].string!
+                        self.statusTempArr.append([updatedTime, message])
+                        
+                        //println("Time: \(updatedTime) Message: \(message)")
+                    }
                 }
+                
+                
+                var nextPageLink = data["paging"]["next"].string
+                var i = 1
+                println("Next Link : \(nextPageLink!)")
+                if nextPageLink != nil && i < 3 {
+                    println("I'm here!")
+                    Alamofire.request(Alamofire.Method.GET, nextPageLink!).responseJSON() {
+                        (_, _, jsonData, _) in
+                        
+                        // TODO: Unwrap the optional instead of forced unwrapping! -> Prem
+                        let data1 = JSON(jsonData!)
+                        println(data1)
+                        println("i Value \(i)")
+                        nextPageLink = data1["paging"]["next"].string
+                        i += 1
+                    }
+                    println(i)
+                    var j = i
+                    println(j)
+//                    while j == i{
+//                        
+//                    }
+                }
+                    
+                
+                
+                //Print the Status array
+                /*
+                println(self.statusTempArr.count)
+                println(self.statusTempArr[0].endIndex)
+                for rows in 0..<self.statusTempArr.count{
+                    for columns in 0..<self.statusTempArr[0].endIndex{
+                        println(self.statusTempArr[rows][columns])
+                    }
+                }
+                */
                 
             }
             
             
             
             
-            
-            
-            
-            /******************************************************/
-            
-            
+            //TODO: Take the regular expression and make a function
             if var eventDate : String = data["data"][0]["start_time"].string{
                 
 
@@ -166,10 +217,6 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         self.firstNameLabel.text = "Hey \(user.first_name)!"
         self.firstNameLabel.hidden = false
         
-        for (key,date) in self.eventDetailsDict{
-            println("Event Name: \(key) is on \(date)")
-        }
-        
         //To get the email id - Use the following method coz, there is no available property for the
         // user - FBGraphUser object to get email id
         
@@ -219,8 +266,9 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         
         if segue.identifier == "homeToEventSegue" {
             if let destinationVC = segue.destinationViewController as? EventsViewController{
-                destinationVC.eventDetailsDict = self.eventDetailsDict
                 destinationVC.eventDetailsArr = self.eventDetailsArr
+                destinationVC.eventDetailsArr = self.statusTempArr
+                
             }
         }
         
