@@ -10,6 +10,7 @@ import UIKit
 
 class EventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+
     //MARK: UI Declaration
     @IBOutlet var eventLabel: UILabel!
     @IBOutlet var eventTableView: UITableView!
@@ -17,6 +18,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     //MARK: Variable Declaration
     var eventDetailsArr = [[String]]()
     let textCellIdentifier = "TextCell"
+
     
     
     
@@ -25,8 +27,10 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         eventTableView.delegate = self
         eventTableView.dataSource = self
         
+
         if !eventDetailsArr.isEmpty{
             eventLabel.text = "Your Upcoming events!"
+
         }
         else{
             eventLabel.text = "No Events!"
@@ -40,9 +44,11 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+
     
     //MARK:- DataSource protocol methods
     //MARK: Table Cell Creation
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1 // Since i'm implementing with just one section keeping this as 1
     }
@@ -53,11 +59,13 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         
         
         var cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier) as? UITableViewCell
         
         if cell != nil {
+
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
                 reuseIdentifier: textCellIdentifier)
         }

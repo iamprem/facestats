@@ -34,8 +34,10 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     var firstName : String!
     var lastName : String!
     var email : String!
+
     var eventDetailsArr = [[String]]()
     var statusTempArr = [[String]]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         //Get the access token of the current session
         
         var accessToken = FBSession.activeSession().accessTokenData.accessToken
+
         //println(accessToken)
         
         
@@ -71,6 +74,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
             /******************************************************/
             self.eventDetailsArr.removeAll(keepCapacity: true)
             //println(data.count)
+
             for var i = 0; i < data.count; ++i {
                 
                 // get news title from json object
@@ -78,6 +82,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                     if let dateStringtemp = data["data"][i]["start_time"].string {
                         
                         var eventDate = self.dateStringToDateObject(dateStringtemp)
+
                         var dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
                         var dateString = dateFormatter.stringFromDate(eventDate)
@@ -85,6 +90,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                         var subStringIndex = dateStringLength - 6
                         var tinyDateString = dateString.substringToIndex(advance(dateString.startIndex, subStringIndex))
                         
+
                         // add to Array
                         self.eventDetailsArr.append([eventName, tinyDateString])
                         
@@ -157,11 +163,14 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                 */
                 
             }
+
             
             
             
             
+
             //TODO: Take the regular expression and make a function
+
             if var eventDate : String = data["data"][0]["start_time"].string{
                 
 
@@ -217,6 +226,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         self.firstNameLabel.text = "Hey \(user.first_name)!"
         self.firstNameLabel.hidden = false
         
+
         //To get the email id - Use the following method coz, there is no available property for the
         // user - FBGraphUser object to get email id
         
@@ -266,9 +276,11 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         
         if segue.identifier == "homeToEventSegue" {
             if let destinationVC = segue.destinationViewController as? EventsViewController{
+
                 destinationVC.eventDetailsArr = self.eventDetailsArr
                 destinationVC.eventDetailsArr = self.statusTempArr
                 
+
             }
         }
         
