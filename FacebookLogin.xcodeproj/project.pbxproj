@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0F818B1ADAFF8A002B5A99 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F818A1ADAFF8A002B5A99 /* StatusViewController.swift */; };
+		3B24A33D1AD7639B00EEB583 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24A33C1AD7639B00EEB583 /* Async.swift */; };
 		3B32FDC81AD4D0B3008E2EB5 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FDC71AD4D0B3008E2EB5 /* FacebookSDK.framework */; };
 		3B32FDCA1AD4D409008E2EB5 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B32FDC91AD4D408008E2EB5 /* EventsViewController.swift */; };
 		3B7233E11AD3A0B700418069 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7233E01AD3A0B700418069 /* RegExCategories.m */; };
@@ -82,6 +84,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3B0F818A1ADAFF8A002B5A99 /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		3B24A33C1AD7639B00EEB583 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Async.swift; path = "Swift-Async/AsyncSwift/Async.swift"; sourceTree = "<group>"; };
 		3B32FDC71AD4D0B3008E2EB5 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		3B32FDC91AD4D408008E2EB5 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		3B7233DF1AD3A0B700418069 /* RegExCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegExCategories.h; path = RegEx/RegExCategories.h; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				3B7233DF1AD3A0B700418069 /* RegExCategories.h */,
 				3B7233E01AD3A0B700418069 /* RegExCategories.m */,
 				3BDAA4181AD2250800597CE2 /* SwiftyJSON.swift */,
+				3B24A33C1AD7639B00EEB583 /* Async.swift */,
 				3BD5E5F61AD23A4400CC873F /* Alamofire.xcodeproj */,
 				8A18676B1ACF4C8300CB7D2C /* FacebookLogin */,
 				8A1867811ACF4C8300CB7D2C /* FacebookLoginTests */,
@@ -162,6 +167,7 @@
 				8A18676E1ACF4C8300CB7D2C /* AppDelegate.swift */,
 				8A1867701ACF4C8300CB7D2C /* ViewController.swift */,
 				3B32FDC91AD4D408008E2EB5 /* EventsViewController.swift */,
+				3B0F818A1ADAFF8A002B5A99 /* StatusViewController.swift */,
 				3BDAA4161AD1C6D500597CE2 /* BasicInfoViewController.swift */,
 				8A1867721ACF4C8300CB7D2C /* Main.storyboard */,
 				8A1867751ACF4C8300CB7D2C /* Images.xcassets */,
@@ -336,9 +342,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0F818B1ADAFF8A002B5A99 /* StatusViewController.swift in Sources */,
 				3B7233E11AD3A0B700418069 /* RegExCategories.m in Sources */,
 				8A1867711ACF4C8300CB7D2C /* ViewController.swift in Sources */,
 				3BDAA4171AD1C6D500597CE2 /* BasicInfoViewController.swift in Sources */,
+				3B24A33D1AD7639B00EEB583 /* Async.swift in Sources */,
 				8A18676F1ACF4C8300CB7D2C /* AppDelegate.swift in Sources */,
 				3BDAA4191AD2250800597CE2 /* SwiftyJSON.swift in Sources */,
 				3B32FDCA1AD4D409008E2EB5 /* EventsViewController.swift in Sources */,

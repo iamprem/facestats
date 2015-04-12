@@ -9,12 +9,13 @@
 import UIKit
 import Alamofire
 import Foundation
+
 //import SwiftyJSON --> No need to import this file
 
 
 
 class ViewController: UIViewController, FBLoginViewDelegate {
-
+    
     //MARK: - UI Declaration
     @IBOutlet var fbLoginView : FBLoginView!
     @IBOutlet var profilePictureView : FBProfilePictureView!
@@ -34,11 +35,13 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     var firstName : String!
     var lastName : String!
     var email : String!
-
-    var eventDetailsArr = [[String]]()
-    var statusTempArr = [[String]]()
-
     
+    var eventDetailsArr = [[String]]()
+    var statusDictionary = [NSDate : String]()
+    var statusTempArr = [[String]]()
+    var sortedKeys = [NSDate]()
+    
+    //MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,8 +49,8 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends", "user_events"]
         
     }
-
-    //Mark: After Login
+    
+    //MARK: After Login
     func loginViewShowingLoggedInUser(loginView : FBLoginView!) {
         println("User Logged In")
         println("This is where you perform a segue.")
@@ -57,8 +60,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         //Get the access token of the current session
         
         var accessToken = FBSession.activeSession().accessTokenData.accessToken
-
-        //println(accessToken)
+        
         
         
         
@@ -73,7 +75,6 @@ class ViewController: UIViewController, FBLoginViewDelegate {
             
             /******************************************************/
             self.eventDetailsArr.removeAll(keepCapacity: true)
-            //println(data.count)
 
             for var i = 0; i < data.count; ++i {
                 
@@ -82,7 +83,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                     if let dateStringtemp = data["data"][i]["start_time"].string {
                         
                         var eventDate = self.dateStringToDateObject(dateStringtemp)
-
+                        
                         var dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
                         var dateString = dateFormatter.stringFromDate(eventDate)
@@ -90,11 +91,11 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                         var subStringIndex = dateStringLength - 6
                         var tinyDateString = dateString.substringToIndex(advance(dateString.startIndex, subStringIndex))
                         
-
+                        
                         // add to Array
                         self.eventDetailsArr.append([eventName, tinyDateString])
                         
-
+                        
                     }
                     
                 }
@@ -110,7 +111,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                 
                 // TODO: Unwrap the optional instead of forced unwrapping! -> Prem
                 let data = JSON(jsonData!)
-                println(data)
+                //println(data)
                 var updatedTime1: String?
                 
                 for var i = 0; i < data["data"].count; ++i {
@@ -120,99 +121,72 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                         var updatedTime = data["data"][i]["updated_time"].string!
                         var message = data["data"][i]["message"].string!
                         self.statusTempArr.append([updatedTime, message])
-                        
-                        //println("Time: \(updatedTime) Message: \(message)")
+                        self.statusDictionary[self.dateStringToDateObject(updatedTime)] = message
+//                        println("Time: \(updatedTime) Message: \(message)")
                     }
                 }
                 
                 
                 var nextPageLink = data["paging"]["next"].string
-                var i = 1
-                println("Next Link : \(nextPageLink!)")
-                if nextPageLink != nil && i < 3 {
-                    println("I'm here!")
-                    Alamofire.request(Alamofire.Method.GET, nextPageLink!).responseJSON() {
-                        (_, _, jsonData, _) in
-                        
-                        // TODO: Unwrap the optional instead of forced unwrapping! -> Prem
-                        let data1 = JSON(jsonData!)
-                        println(data1)
-                        println("i Value \(i)")
-                        nextPageLink = data1["paging"]["next"].string
-                        i += 1
-                    }
-                    println(i)
-                    var j = i
-                    println(j)
-//                    while j == i{
-//                        
-//                    }
-                }
+//                println("Next Link : \(nextPageLink!)")
+                
+                if nextPageLink != nil {
+                    println("Calling Method: \"StatusCall\"")
                     
-                
-                
-                //Print the Status array
-                /*
-                println(self.statusTempArr.count)
-                println(self.statusTempArr[0].endIndex)
-                for rows in 0..<self.statusTempArr.count{
-                    for columns in 0..<self.statusTempArr[0].endIndex{
-                        println(self.statusTempArr[rows][columns])
-                    }
+                    self.statusCall(nextPageLink!)
+                    
+                    println("Check *************************************** Check")
                 }
-                */
                 
-            }
-
-            
-            
-            
-            
-
-            //TODO: Take the regular expression and make a function
-
-            if var eventDate : String = data["data"][0]["start_time"].string{
-                
-
-                /*
-                
-                //Regular Expression to extract date and time
-                var timeZone = NSRegularExpression(pattern:"-(\\d{4})");
-                var date = NSRegularExpression(pattern: "(\\d{4}-\\d{2}-\\d{2})")
-                var time = NSRegularExpression(pattern: "(\\d{2}:\\d{2}:\\d{2})")
-                let retrivedTimeZone = timeZone.firstMatch(eventDate)
-                let retrivedDate = date.firstMatch(eventDate)
-                let retrivedTime = time.firstMatch(eventDate)
-                println(retrivedDate+" "+retrivedTime+" "+retrivedTimeZone)
-                
-                */
-                
-                
-                /*
-                //Extract Date
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
-                var extractedDate = dateFormatter.dateFromString(retrivedDate+" "+retrivedTime+" "+retrivedTimeZone)
-                println("Extracted Date : \(extractedDate)")
-                var localDate = extractedDate?.toLocalTime()
-                println("Local Date : \(localDate)")
-                
-                */
-                
-                /*
-                //Get the number of seconds for the event
-                var timeLeftForTheEvent = NSDate().timeIntervalSinceDate(extractedDate!)
-                timeLeftForTheEvent *= -1
-                var noOfDays: Int = Int(timeLeftForTheEvent/86400)
-                var noOfHours:Int = Int((timeLeftForTheEvent%86400)/3600)
-                var noOfMinutes: Int = Int(((timeLeftForTheEvent%86400)%3600)/60)
-                println("\(noOfDays) days, \(noOfHours) hours and \(noOfMinutes) minutes left for the event \(eventName!)")
-                */
             }
             
         }
+     
+        
+        
+        //TODO: Take the regular expression and make a function
+        
+//        if var eventDate : String = data["data"][0]["start_time"].string{
+        
+            
+            /*
+            
+            //Regular Expression to extract date and time
+            var timeZone = NSRegularExpression(pattern:"-(\\d{4})");
+            var date = NSRegularExpression(pattern: "(\\d{4}-\\d{2}-\\d{2})")
+            var time = NSRegularExpression(pattern: "(\\d{2}:\\d{2}:\\d{2})")
+            let retrivedTimeZone = timeZone.firstMatch(eventDate)
+            let retrivedDate = date.firstMatch(eventDate)
+            let retrivedTime = time.firstMatch(eventDate)
+            println(retrivedDate+" "+retrivedTime+" "+retrivedTimeZone)
+            
+            */
+            
+            
+            /*
+            //Extract Date
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+            var extractedDate = dateFormatter.dateFromString(retrivedDate+" "+retrivedTime+" "+retrivedTimeZone)
+            println("Extracted Date : \(extractedDate)")
+            var localDate = extractedDate?.toLocalTime()
+            println("Local Date : \(localDate)")
+            
+            */
+            
+            /*
+            //Get the number of seconds for the event
+            var timeLeftForTheEvent = NSDate().timeIntervalSinceDate(extractedDate!)
+            timeLeftForTheEvent *= -1
+            var noOfDays: Int = Int(timeLeftForTheEvent/86400)
+            var noOfHours:Int = Int((timeLeftForTheEvent%86400)/3600)
+            var noOfMinutes: Int = Int(((timeLeftForTheEvent%86400)%3600)/60)
+            println("\(noOfDays) days, \(noOfHours) hours and \(noOfMinutes) minutes left for the event \(eventName!)")
+            */
+//        }
         
     }
+    
     
     
     //MARK: Fetched Data after Login
@@ -226,7 +200,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         self.firstNameLabel.text = "Hey \(user.first_name)!"
         self.firstNameLabel.hidden = false
         
-
+        
         //To get the email id - Use the following method coz, there is no available property for the
         // user - FBGraphUser object to get email id
         
@@ -236,7 +210,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                 //self.performSegueWithIdentifier("showBasicInfoView", sender: self)
             }
         }
-
+        
     }
     
     
@@ -246,7 +220,7 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         profilePictureView.profileID = nil
         self.firstNameLabel.hidden = true
         self.firstNameLabel.text = ""
-//        self.performSegueWithIdentifier("eventsToHomeSegue", sender: EventsViewController())
+        //        self.performSegueWithIdentifier("eventsToHomeSegue", sender: EventsViewController())
         println("User Logged Out")
     }
     
@@ -276,11 +250,17 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         
         if segue.identifier == "homeToEventSegue" {
             if let destinationVC = segue.destinationViewController as? EventsViewController{
-
-                destinationVC.eventDetailsArr = self.eventDetailsArr
-                destinationVC.eventDetailsArr = self.statusTempArr
                 
-
+                println("Preparing for segue!")
+                for key in sortedKeys{
+                    println("\(key)")
+                }
+//                destinationVC.eventDetailsArr = self.eventDetailsArr
+                
+                //TODO: put all these in status segue, uncomment above line
+                destinationVC.statusTimeArray = self.sortedKeys
+                destinationVC.statusDictionary = self.statusDictionary
+                
             }
         }
         
@@ -301,9 +281,67 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         return extractedDateUTC!
         
     }
-
-
+    
+    
+    //MARK: - Status Async Method
+    func statusCall(var nextPageLink : String?) -> Void {
+        
+        if(nextPageLink == nil){
+            println("Loaded **************************** Loaded!")
+            //Sort the Dictionary
+            sortedKeys = sorted(statusDictionary.keys) {
+                item1, item2 in
+                let date1 = item1.0 as NSDate
+                let date2 = item2.0 as NSDate
+                return date1.compare(date2) == NSComparisonResult.OrderedAscending
+            }
+            //TODO: Calculate the stats here
+            
+            //Printing the dictionary
+            println("Printing Dictionary")
+            for (date,status) in statusDictionary{
+                println("\(date) : \(status)")
+            }
+            
+            println("==================Sorted +===========")
+            for key in sortedKeys{
+                println("\(key) : \(statusDictionary[key]!)")
+            }
+            
+            return
+        }
+        else{
+            
+            Alamofire.request(Alamofire.Method.GET, nextPageLink!).responseJSON() {
+                (_, _, jsonData, _) in
+                
+                // TODO: Unwrap the optional instead of forced unwrapping! -> Prem
+                let data1 = JSON(jsonData!)
+                //println(data1)
+                
+                var updatedTime1: String?
+                
+                for var i = 0; i < data1["data"].count; ++i {
+                    updatedTime1 = data1["data"][i]["message"].string
+                    if updatedTime1 != nil {
+                        
+                        var updatedTime = data1["data"][i]["updated_time"].string!
+                        var message = data1["data"][i]["message"].string!
+                        self.statusTempArr.append([updatedTime, message])
+                        self.statusDictionary[self.dateStringToDateObject(updatedTime)] = message
+                        //println("Time: \(updatedTime) Message: \(message)")
+                    }
+                }
+                
+                nextPageLink = data1["paging"]["next"].string
+                self.statusCall(nextPageLink) //Tail recursion
+                
+            }
+        }
+    }
+    
 }
+
 
 
 //An Extenstion of NSDate class to convert Local --> UTC/GMT and UTC/GMT --> Local
@@ -323,3 +361,17 @@ extension NSDate {
         return NSDate(timeInterval: seconds, sinceDate: self)
     }
 }
+
+
+// MARK: - References
+
+/*
+//Printing the processed array
+println(self.statusTempArr.count)
+println(self.statusTempArr[0].endIndex)
+for rows in 0..<self.statusTempArr.count{
+for columns in 0..<self.statusTempArr[0].endIndex{
+println(self.statusTempArr[rows][columns])
+}
+}
+*/
