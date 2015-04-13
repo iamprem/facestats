@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatusViewController: UIViewController {
+class StatusViewController: UIViewController, JBBarChartViewDelegate, JBBarChartViewDataSource {
 
     @IBOutlet var statusCountLabel: UILabel!
     @IBOutlet var firstStatusLabel: UILabel!
@@ -35,12 +35,45 @@ class StatusViewController: UIViewController {
         statusDistribution(statusTimeArray)
         
         
+        //Draw the chart
+        let barChartView = JBBarChartView();
+        barChartView.dataSource = self;
+        barChartView.delegate = self;
+        barChartView.backgroundColor = UIColor.cyanColor()
+        barChartView.frame = CGRectMake(0, 20, 320, 200);
+        barChartView.center = CGPointMake(160, 350)
+        barChartView.minimumValue = CGFloat(0)
+        barChartView.reloadData();
+        self.view.addSubview(barChartView);
+        println("Launched");
+
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    //Delegate methods for JBChart
+    func numberOfBarsInBarChartView(barChartView: JBBarChartView!) -> UInt {
+        println("numberOfBarsInBarChartView");
+        return UInt(statusCountSortedArr.count)
+        //        return 10 //number of lines in chart
+    }
+    
+    func barChartView(barChartView: JBBarChartView, heightForBarViewAtIndex index: UInt) -> CGFloat {
+        println("barChartView", index);
+        return CGFloat(statusCountDictionary[statusCountSortedArr[Int(index)]]!)
+        //        return CGFloat(arc4random_uniform(100));
+    }
+
+    
+    
+    
+    
+    
     
     //Count no of days from the given date till current date
     func countDaysfromLastStatus(lastStatusDate : NSDate) -> Int {
@@ -75,9 +108,12 @@ class StatusViewController: UIViewController {
         
         statusCountSortedArr = sorted(statusCountDictionary.keys) {
             item1, item2 in
-            let yyyymm1 = item1.0 as String
-            let yyyymm2 = item2.0 as String
-            return yyyymm1 < yyyymm2
+            
+            
+            let date1 = DFYearMonth.dateFromString(item1.0) as NSDate!
+            let date2 = DFYearMonth.dateFromString(item2.0) as NSDate!
+            return date1.compare(date2) == NSComparisonResult.OrderedAscending
+
         }
         
         for val in statusCountSortedArr{
@@ -86,6 +122,25 @@ class StatusViewController: UIViewController {
         
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//========================================================================================================
 
 //        println("Status page =================")
 //        for key in statusTimeArray{
