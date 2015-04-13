@@ -106,14 +106,16 @@ class StatusViewController: UIViewController, JBBarChartViewDelegate, JBBarChart
             }
         }
         
+        //Zero Padding for left out months
+        statusDistributionZeroPadding(statusTimeArray)
+        
+        
         statusCountSortedArr = sorted(statusCountDictionary.keys) {
             item1, item2 in
-            
             
             let date1 = DFYearMonth.dateFromString(item1.0) as NSDate!
             let date2 = DFYearMonth.dateFromString(item2.0) as NSDate!
             return date1.compare(date2) == NSComparisonResult.OrderedAscending
-
         }
         
         for val in statusCountSortedArr{
@@ -121,34 +123,59 @@ class StatusViewController: UIViewController, JBBarChartViewDelegate, JBBarChart
         }
         
     }
+    
+    
+    func statusDistributionZeroPadding(statusTimeArray : [NSDate]){
+        
+        let DFYear = NSDateFormatter()
+        let DFMonth = NSDateFormatter()
+        DFYear.dateFormat = "yyyy"
+        DFMonth.dateFormat = "MM"
+        
+        let startYear: Int = DFYear.stringFromDate(statusTimeArray[0]).toInt()!
+        let startMonth: Int = DFMonth.stringFromDate(statusTimeArray[0]).toInt()!
+        let endYear: Int = DFYear.stringFromDate(NSDate()).toInt()!
+        let endMonth: Int = DFMonth.stringFromDate(NSDate()).toInt()!
+        
+        println("Start year and Month: \(startYear) - \(startMonth) \n End year and Month: \(endYear) - \(endMonth)")
+        
+        //TODO: replace if-else with switch case
+        for (var i = startYear; i <= endYear; i++ ) {
+            
+            if i == startYear && i == endYear{
+                for (var j = startMonth; j <= endMonth; j++){
+                    
+                    if statusCountDictionary["\(i)-\(j)"] == nil{
+                        statusCountDictionary["\(i)-\(j)"] = 0
+                    }
+                    
+                }
+            }
+            else if i == startYear{
+                for (var j = startMonth; j <= endMonth; j++){
+                    if statusCountDictionary["\(i)-\(j)"] == nil{
+                        statusCountDictionary["\(i)-\(j)"] = 0
+                    }
+                }
+            }
+            else if i == endYear{
+                for (var j = 1; j <= endMonth; j++){
+                    if statusCountDictionary["\(i)-\(j)"] == nil{
+                        statusCountDictionary["\(i)-\(j)"] = 0
+                    }
+                }
+            }
+            else{
+                for (var j = 1; j <= 12; j++){
+                    if statusCountDictionary["\(i)-\(j)"] == nil{
+                        statusCountDictionary["\(i)-\(j)"] = 0
+                    }
+                }
+            }
+        }
+        
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//========================================================================================================
-
-//        println("Status page =================")
-//        for key in statusTimeArray{
-//            var dateFormatter = NSDateFormatter()
-//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
-//            var dateString = dateFormatter.stringFromDate(key)
-//            println(dateString)
-//        }
 
 
 /*
