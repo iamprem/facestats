@@ -18,8 +18,8 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     //MARK: Variable Declaration
     var eventDetailsArr = [[String]]()
     let textCellIdentifier = "TextCell"
-    var statusTimeArray = [NSDate]()
-    var statusDictionary = [NSDate : String]()
+//    var statusTimeArray = [NSDate]()
+//    var statusDictionary = [NSDate : String]()
     
     
     override func viewDidLoad() {
@@ -30,18 +30,9 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
 
         if !eventDetailsArr.isEmpty{
             eventLabel.text = "Your Upcoming events!"
-
         }
         else{
             eventLabel.text = "No Events!"
-        }
-        
-        println("Events page =================")
-        for key in statusTimeArray{
-            var dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
-            var dateString = dateFormatter.stringFromDate(key)
-            println(dateString)
         }
         
     }
@@ -61,31 +52,24 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return eventDetailsArr.count
-        return statusTimeArray.count
+        return eventDetailsArr.count
+        
         // Most of the time my data source is an array of something...  will replace with the actual name of the data source
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        
         
         var cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier) as? UITableViewCell
         
         if cell != nil {
-
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
                 reuseIdentifier: textCellIdentifier)
         }
         // At this point, we definitely have a cell -- either dequeued or newly created,
         // so let's force unwrap the optional into a UITableViewCell
         let row = indexPath.row
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
-        var dateString = dateFormatter.stringFromDate(statusTimeArray[row])
-        cell!.textLabel?.text = dateString
-//        cell!.textLabel?.text = eventDetailsArr[row][0]
-//        cell!.detailTextLabel?.text = eventDetailsArr[row][1]
+        cell!.textLabel?.text = eventDetailsArr[row][0]
+        cell!.detailTextLabel?.text = eventDetailsArr[row][1]
         
         return cell!
     }

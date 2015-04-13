@@ -30,6 +30,19 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         }
         
     }
+    @IBAction func statusStatsButton(sender: AnyObject) {
+        
+        if(FBSession.activeSession().isOpen){
+            self.performSegueWithIdentifier("homeToStatusSegue", sender: self)
+        }
+        else{
+            firstNameLabel.text = "Please Login!"
+            firstNameLabel.hidden = false
+        }
+        
+        
+        
+    }
     
     //MARK: - Variable Declaration
     var firstName : String!
@@ -128,7 +141,6 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                 
                 
                 var nextPageLink = data["paging"]["next"].string
-//                println("Next Link : \(nextPageLink!)")
                 
                 if nextPageLink != nil {
                     println("Calling Method: \"StatusCall\"")
@@ -141,49 +153,6 @@ class ViewController: UIViewController, FBLoginViewDelegate {
             }
             
         }
-     
-        
-        
-        //TODO: Take the regular expression and make a function
-        
-//        if var eventDate : String = data["data"][0]["start_time"].string{
-        
-            
-            /*
-            
-            //Regular Expression to extract date and time
-            var timeZone = NSRegularExpression(pattern:"-(\\d{4})");
-            var date = NSRegularExpression(pattern: "(\\d{4}-\\d{2}-\\d{2})")
-            var time = NSRegularExpression(pattern: "(\\d{2}:\\d{2}:\\d{2})")
-            let retrivedTimeZone = timeZone.firstMatch(eventDate)
-            let retrivedDate = date.firstMatch(eventDate)
-            let retrivedTime = time.firstMatch(eventDate)
-            println(retrivedDate+" "+retrivedTime+" "+retrivedTimeZone)
-            
-            */
-            
-            
-            /*
-            //Extract Date
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
-            var extractedDate = dateFormatter.dateFromString(retrivedDate+" "+retrivedTime+" "+retrivedTimeZone)
-            println("Extracted Date : \(extractedDate)")
-            var localDate = extractedDate?.toLocalTime()
-            println("Local Date : \(localDate)")
-            
-            */
-            
-            /*
-            //Get the number of seconds for the event
-            var timeLeftForTheEvent = NSDate().timeIntervalSinceDate(extractedDate!)
-            timeLeftForTheEvent *= -1
-            var noOfDays: Int = Int(timeLeftForTheEvent/86400)
-            var noOfHours:Int = Int((timeLeftForTheEvent%86400)/3600)
-            var noOfMinutes: Int = Int(((timeLeftForTheEvent%86400)%3600)/60)
-            println("\(noOfDays) days, \(noOfHours) hours and \(noOfMinutes) minutes left for the event \(eventName!)")
-            */
-//        }
         
     }
     
@@ -255,9 +224,13 @@ class ViewController: UIViewController, FBLoginViewDelegate {
                 for key in sortedKeys{
                     println("\(key)")
                 }
-//                destinationVC.eventDetailsArr = self.eventDetailsArr
+                destinationVC.eventDetailsArr = self.eventDetailsArr
                 
-                //TODO: put all these in status segue, uncomment above line
+            }
+        }
+        if segue.identifier == "homeToStatusSegue" {
+            if let destinationVC = segue.destinationViewController as? StatusViewController{
+                
                 destinationVC.statusTimeArray = self.sortedKeys
                 destinationVC.statusDictionary = self.statusDictionary
                 
