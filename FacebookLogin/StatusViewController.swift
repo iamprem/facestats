@@ -17,7 +17,8 @@ class StatusViewController: UIViewController {
     
     var statusTimeArray = [NSDate]()
     var statusDictionary = [NSDate : String]()
-    
+    var statusCountDictionary = [String : Int]()
+    var statusCountSortedArr = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,10 @@ class StatusViewController: UIViewController {
         firstStatusLabel.text = "Your first Status was on \(DFFull.stringFromDate(statusTimeArray[0]))"
         itsBeenLabel.text = "It's been \(countDaysfromLastStatus(statusTimeArray[noOfStatus - 1])) days"
         
+        //Calculate the status distribution
+        statusDistribution(statusTimeArray)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +42,7 @@ class StatusViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //Count no of days from the given date till current date
     func countDaysfromLastStatus(lastStatusDate : NSDate) -> Int {
         
         var secondsFromLastDate = NSDate().timeIntervalSinceDate(lastStatusDate)
@@ -46,6 +52,39 @@ class StatusViewController: UIViewController {
         
     }
     
+    func statusDistribution(statusTimeArray : [NSDate]){
+        
+        statusCountDictionary.removeAll(keepCapacity: true)
+        let DFDay = NSDateFormatter()
+        let DFYearMonth = NSDateFormatter()
+        DFDay.dateFormat = "dd"
+        DFYearMonth.dateFormat = "yyyy-MM"
+
+        for timeStamp in statusTimeArray {
+            var currentDD = DFDay.stringFromDate(timeStamp).toInt()
+            var currentYYYYMM = DFYearMonth.stringFromDate(timeStamp)
+            
+            if statusCountDictionary[currentYYYYMM] != nil{
+                statusCountDictionary[currentYYYYMM] = statusCountDictionary[currentYYYYMM]! + 1
+                
+            } else{
+             
+                statusCountDictionary[currentYYYYMM] = 1
+            }
+        }
+        
+        statusCountSortedArr = sorted(statusCountDictionary.keys) {
+            item1, item2 in
+            let yyyymm1 = item1.0 as String
+            let yyyymm2 = item2.0 as String
+            return yyyymm1 < yyyymm2
+        }
+        
+        for val in statusCountSortedArr{
+            println("\(val) : \(statusCountDictionary[val]!)")
+        }
+        
+    }
 }
 
 //        println("Status page =================")
