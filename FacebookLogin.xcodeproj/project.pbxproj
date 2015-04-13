@@ -11,6 +11,9 @@
 		3B24A33D1AD7639B00EEB583 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B24A33C1AD7639B00EEB583 /* Async.swift */; };
 		3B32FDC81AD4D0B3008E2EB5 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FDC71AD4D0B3008E2EB5 /* FacebookSDK.framework */; };
 		3B32FDCA1AD4D409008E2EB5 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B32FDC91AD4D408008E2EB5 /* EventsViewController.swift */; };
+		3B5719171ADC67B900D41FC0 /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5719121ADC67B900D41FC0 /* JBBarChartView.m */; };
+		3B5719181ADC67B900D41FC0 /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5719141ADC67B900D41FC0 /* JBChartView.m */; };
+		3B5719191ADC67B900D41FC0 /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5719161ADC67B900D41FC0 /* JBLineChartView.m */; };
 		3B7233E11AD3A0B700418069 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7233E01AD3A0B700418069 /* RegExCategories.m */; };
 		3BD5E6051AD23A8800CC873F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD5E5FE1AD23A4500CC873F /* Alamofire.framework */; };
 		3BD5E6061AD23A8800CC873F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD5E5FE1AD23A4500CC873F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -88,6 +91,12 @@
 		3B24A33C1AD7639B00EEB583 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Async.swift; path = "Swift-Async/AsyncSwift/Async.swift"; sourceTree = "<group>"; };
 		3B32FDC71AD4D0B3008E2EB5 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		3B32FDC91AD4D408008E2EB5 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		3B5719111ADC67B900D41FC0 /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
+		3B5719121ADC67B900D41FC0 /* JBBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartView.m; sourceTree = "<group>"; };
+		3B5719131ADC67B900D41FC0 /* JBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartView.h; sourceTree = "<group>"; };
+		3B5719141ADC67B900D41FC0 /* JBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartView.m; sourceTree = "<group>"; };
+		3B5719151ADC67B900D41FC0 /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
+		3B5719161ADC67B900D41FC0 /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
 		3B7233DF1AD3A0B700418069 /* RegExCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegExCategories.h; path = RegEx/RegExCategories.h; sourceTree = "<group>"; };
 		3B7233E01AD3A0B700418069 /* RegExCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegExCategories.m; path = RegEx/RegExCategories.m; sourceTree = "<group>"; };
 		3BD5E5F61AD23A4400CC873F /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
@@ -126,6 +135,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B5719101ADC67B900D41FC0 /* JawBone */ = {
+			isa = PBXGroup;
+			children = (
+				3B5719111ADC67B900D41FC0 /* JBBarChartView.h */,
+				3B5719121ADC67B900D41FC0 /* JBBarChartView.m */,
+				3B5719131ADC67B900D41FC0 /* JBChartView.h */,
+				3B5719141ADC67B900D41FC0 /* JBChartView.m */,
+				3B5719151ADC67B900D41FC0 /* JBLineChartView.h */,
+				3B5719161ADC67B900D41FC0 /* JBLineChartView.m */,
+			);
+			path = JawBone;
+			sourceTree = "<group>";
+		};
 		3BD5E5F71AD23A4400CC873F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +162,7 @@
 		8A1867601ACF4C8300CB7D2C = {
 			isa = PBXGroup;
 			children = (
+				3B5719101ADC67B900D41FC0 /* JawBone */,
 				3B32FDC71AD4D0B3008E2EB5 /* FacebookSDK.framework */,
 				3B7233DF1AD3A0B700418069 /* RegExCategories.h */,
 				3B7233E01AD3A0B700418069 /* RegExCategories.m */,
@@ -345,9 +368,12 @@
 				3B0F818B1ADAFF8A002B5A99 /* StatusViewController.swift in Sources */,
 				3B7233E11AD3A0B700418069 /* RegExCategories.m in Sources */,
 				8A1867711ACF4C8300CB7D2C /* ViewController.swift in Sources */,
+				3B5719181ADC67B900D41FC0 /* JBChartView.m in Sources */,
 				3BDAA4171AD1C6D500597CE2 /* BasicInfoViewController.swift in Sources */,
 				3B24A33D1AD7639B00EEB583 /* Async.swift in Sources */,
 				8A18676F1ACF4C8300CB7D2C /* AppDelegate.swift in Sources */,
+				3B5719191ADC67B900D41FC0 /* JBLineChartView.m in Sources */,
+				3B5719171ADC67B900D41FC0 /* JBBarChartView.m in Sources */,
 				3BDAA4191AD2250800597CE2 /* SwiftyJSON.swift in Sources */,
 				3B32FDCA1AD4D409008E2EB5 /* EventsViewController.swift in Sources */,
 			);

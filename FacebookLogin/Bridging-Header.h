@@ -12,4 +12,10 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "RegExCategories.h"
 
+//JawBone Headers
+#import <UIKit/UIKit.h>
+#import "JBChartView.h"
+#import "JBBarChartView.h"
+#import "JBLineChartView.h"
+
 #endif
