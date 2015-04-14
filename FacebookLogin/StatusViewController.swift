@@ -39,11 +39,12 @@ class StatusViewController: UIViewController, JBBarChartViewDelegate, JBBarChart
         let barChartView = JBBarChartView();
         barChartView.dataSource = self;
         barChartView.delegate = self;
-        barChartView.backgroundColor = UIColor.cyanColor()
+        barChartView.backgroundColor = UIColor.greenColor()
         barChartView.frame = CGRectMake(0, 20, 320, 200);
         barChartView.center = CGPointMake(160, 350)
         barChartView.minimumValue = CGFloat(0)
         barChartView.reloadData();
+        
         self.view.addSubview(barChartView);
         println("Launched");
 
