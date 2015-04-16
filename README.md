@@ -16,7 +16,7 @@ _______![FaceStats Authentication](https://raw.githubusercontent.com/iamprem/Fac
 _______![FaceStats Events](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/FaceStat4.png)
 
 ![FaceStats StatusStats](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/FaceStat6.png)
-_______![FaceStats Logout](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/FaceStat7.png)
+______![FaceStats Logout](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/FaceStat7.png)
 ##Result
 
 
