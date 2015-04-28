@@ -45,26 +45,17 @@ Swift is the result of the latest research on programming languages
 
 ##Why shouln't SWIFT?
 
-* Not an independent language - See our code **(Objective-C - 83.0% SWIFT - 17.0%)**
+* **Not an independent language - See our code (Objective-C - 83.0% SWIFT - 17.0%)**
+</br>
 ![Lang Stats](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/lang_stat.png)
-* Still in development phase. 2 Major updates since we started.
+</br>
+* **Still in development phase. 2 Major updates since we started.**
+</br>
 ![Change 1](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/changelog_2.png)
 ![Change 2](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/changelog_1.png)
+</br>
 
 
-
-Abstract
-
-*
-We spend all our free time in front of a computer checking out our social network profile. Most of the time its just spent glaring at a screen browsing through activities and posts made by friends and acquaintances. In the background, the social networking site constantly tracks where users click and interprets what the users interests may be when they are browsing, having logged into their account. This data is never shared with the user and they are hardly notified that this information is being collected. Currently there aren’t many applications that can retrieve this data in an understandable format for a user upon request.
-
-We propose to create an app for the iOS platform that will collect and process usage statistics from a user’s profile in the social networking site – Facebook, and generate insightful graphs for the user to appreciate his Internet usage. The data that is collected from the site associated with user’s Facebook account and this data can be retrieved by some means with user’s permission through Facebook API. The twist is that we propose to analyze this data and present to users an insight into what they actually do when they login to Facebook in the form of info graphics
-
-
-##Introduction:   Explain the abstract in detail including what has been achieved.
-
-
-##Methods used and technical documentation (see below)
 
 
 ##Sample runs with proper output and or diagrams
