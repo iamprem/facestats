@@ -43,15 +43,19 @@ Swift is the result of the latest research on programming languages
 </br>
 </br>
 
-##Why shouln't SWIFT?
+##NO.. WAIT.. DONT START!
 
 * **Not an independent language - See our code (Objective-C - 83.0% SWIFT - 17.0%)**
 </br>
 ![Lang Stats](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/lang_stat.png)
 </br>
+</br>
 * **Still in development phase. 2 Major updates since we started.**
 </br>
+</br>
 ![Change 1](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/changelog_2.png)
+</br>
+</br>
 ![Change 2](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/changelog_1.png)
 </br>
 
