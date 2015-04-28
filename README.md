@@ -1,7 +1,10 @@
 # FaceStats
-
-## Developed by:
 </br>
+###Social media analysis
+</br>
+</br>
+</br>
+## Developed by:
 </br>
 * ###Prem Kumar Murugesan
 
@@ -15,10 +18,40 @@
 </br>
 </br>
 </br>
-#Apple's SWIFT
+
+###Apple's SWIFT
+
+</br>
+</br>
+</br>
+
+##Why SWIFT?
+
+* **Modern** - 
+Swift is the result of the latest research on programming languages
+* **Designed for Safety** 
+  * Variables are always initialized before use.
+  * Arrays and integers are checked for overflow
+  * Memory is managed automatically. 
+* **Syntax** - is tuned to make it easy to define your intent 
+  * for example, simple three-character keywords define a **variable (var)** or **constant (let)**.
+* **Big Future** - Swift is a successor to the C and Objective-C languages
+* **Interactive Playgrounds** - Try before you implement
+  * API calls
+  * New Algorithms
+</br>
+</br>
+</br>
+
+##Why shouln't SWIFT?
+
+* Not an independent language - See our code **(Objective-C - 83.0% SWIFT - 17.0%)**
 
 
-##Abstract
+
+
+
+Abstract
 
 *
 We spend all our free time in front of a computer checking out our social network profile. Most of the time its just spent glaring at a screen browsing through activities and posts made by friends and acquaintances. In the background, the social networking site constantly tracks where users click and interprets what the users interests may be when they are browsing, having logged into their account. This data is never shared with the user and they are hardly notified that this information is being collected. Currently there aren’t many applications that can retrieve this data in an understandable format for a user upon request.
