@@ -29,13 +29,21 @@
 
 * **Modern** - 
 Swift is the result of the latest research on programming languages
+</br>
+</br>
 * **Designed for Safety** 
   * Variables are always initialized before use.
   * Arrays and integers are checked for overflow
-  * Memory is managed automatically. 
+  * Memory is managed automatically.
+</br>
+</br>
 * **Syntax** - is tuned to make it easy to define your intent 
   * for example, simple three-character keywords define a **variable (var)** or **constant (let)**.
+</br>
+</br>
 * **Big Future** - Swift is a successor to the C and Objective-C languages
+</br>
+</br>
 * **Interactive Playgrounds** - Try before you implement
   * API calls
   * New Algorithms
@@ -124,3 +132,10 @@ ______![FaceStats Logout](https://raw.githubusercontent.com/iamprem/FaceStats/ma
 </br>
 
 #THANK YOU!
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
