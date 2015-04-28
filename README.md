@@ -46,7 +46,7 @@ Swift is the result of the latest research on programming languages
 ##Why shouln't SWIFT?
 
 * Not an independent language - See our code **(Objective-C - 83.0% SWIFT - 17.0%)**
-
+![Lang Stats](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/lang_stat.png)
 
 
 
