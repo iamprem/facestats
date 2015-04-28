@@ -95,6 +95,13 @@ Swift is the result of the latest research on programming languages
 * Total no of Status updates ≈ Total no of Ultimately bored day
 </br>
 </br>
+* External Libraries used
+  * Alamofire(HTTP Request)
+  * SwiftyJSON(JSON Parsing)
+  * JBCharView(Graph)
+  * Regex(Regular Expression)
+</br>
+</br>
 </br>
 </br>
 
