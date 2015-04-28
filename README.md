@@ -72,7 +72,7 @@ Swift is the result of the latest research on programming languages
   * **Given for FREE (Username, Profile picture and emailId)**
 </br>
 </br>
-* Made an iOS app that displays the Events that user interested to go.
+* Made an iOS app that displays Events that user interested to go.
 </br>
 </br>
 * Analysed the retrived posts made by user and plotted the **Status Density Graph**
@@ -90,7 +90,7 @@ Swift is the result of the latest research on programming languages
 </br>
 </br>
 
-##Sample runs with proper output and or diagrams
+##Sample outputs
 ![FaceStats Login](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/FaceStat1.png)
 _______![FaceStats Authentication](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/FaceStat2.png)
 
@@ -99,7 +99,28 @@ _______![FaceStats Events](https://raw.githubusercontent.com/iamprem/FaceStats/m
 
 ![FaceStats StatusStats](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/FaceStat6.png)
 ______![FaceStats Logout](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/FaceStat7.png)
-##Result
 
+</br>
+</br>
+</br>
+##What Next?
+</br>
+</br>
+* Learn Objective-C before touching SWIFT
+</br>
+</br>
+* Submit the app for review to get the required permissions
+</br>
+</br>
+* Analyse more data to get usefull information
 
-##Conclusion
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+#THANK YOU!
