@@ -44,7 +44,9 @@ Swift is the result of the latest research on programming languages
 </br>
 
 ##NO.. WAIT.. DONT START!
-
+</br>
+</br>
+</br>
 * **Not an independent language - See our code (Objective-C - 83.0% SWIFT - 17.0%)**
 </br>
 ![Lang Stats](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/lang_stat.png)
@@ -58,9 +60,29 @@ Swift is the result of the latest research on programming languages
 </br>
 ![Change 2](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/changelog_1.png)
 </br>
+</br>
+</br>
+</br>
 
+## ENOUGH! What we did?
 
-
+</br>
+</br>
+</br>
+* Used Faceboook's "open(closed long back) graph API" to get the user's facebook data like
+  * **Events**
+  * **Posts**
+  * **Given for FREE (Username, Profile picture and emailId)**
+</br>
+* Made an iOS app that displays the Events that user interested to go.
+</br>
+* Analysed the retrived posts made by user and plotted the **Status Density Graph**
+</br>
+* How many days since user updated his/her last status
+</br>
+* First day that user clicked the **Post** button on facebook.
+</br>
+* Total no of Status updates ≈ Total no of Ultimately bored day
 
 ##Sample runs with proper output and or diagrams
 ![FaceStats Login](https://raw.githubusercontent.com/iamprem/FaceStats/master/Screenshots/FaceStat1.png)
