@@ -92,7 +92,7 @@ Swift is the result of the latest research on programming languages
 * First day that user clicked the **Post** button on facebook.
 </br>
 </br>
-* Total no of Status updates ≈ Total no of Ultimately bored day
+* Total no of Status updates user ever made
 </br>
 </br>
 * External Libraries used
